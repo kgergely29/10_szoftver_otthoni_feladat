@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="/style.css" />
+        <title>Chat</title>
+    </head>
+    <body>
+        <div id="udvozles">
+            <p id="name">Szia {{name}}!</p>
+        </div>
+        <div id="chats">
+            <div class="msg">
+                <span class="msg-name">Asd</span>: 
+                <span class="msg-text">hsgdfjhgfjh</span>
+            </div>
+            <div class="msg">
+                <span class="msg-ownname">aaaa</span>: 
+                <span class="msg-text">hsgdfjhgfjh</span>
+            </div>
+        </div>
+        <div id="sender">
+            <input type="text" id="send-msg" />
+            <button id="send-button" onclick="sendMsg()">Küldés</button>
+        </div>
+    </body>
+    <script>
+        function sendMsg() {
+            let tb = document.getElementById('send-msg')
+            
+            let xhhtp = new XMLHttpRequest()
+            console.log(`/msg/add/{{name}}/${tb.value}`)
+            xhhtp.open('GET', `/msg/add/{{name}}/${tb.value}`)
+            xhhtp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('chats').innerHTML =
+                        this.responseText
+                }
+            }
+            xhhtp.send()
+
+            tb.value = ''
+        }
+
+        function refreshMsgs() {
+            let xhhtp = new XMLHttpRequest()
+            xhhtp.open('GET', '/msg/read/{{name}}')
+            xhhtp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('chats').innerHTML =
+                        this.responseText
+                }
+            }
+            xhhtp.send()
+        }
+
+        setInterval(refreshMsgs, 500)
+    </script>
+</html>

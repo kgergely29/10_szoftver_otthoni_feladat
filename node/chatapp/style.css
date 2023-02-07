@@ -1,0 +1,47 @@
+body, html {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+}
+
+#udvozles, #sender {
+    height: 50px;
+    margin: 0px;
+}
+
+#name {
+    margin: 0px;
+    font-size: x-large;
+}
+
+#chats {
+    height: calc(100% - 110px);
+    margin: 0px;
+    overflow-y: auto;
+}
+
+.msg {
+    margin: 5px;
+    font-size: large;
+}
+
+.msg-name {
+    color: green;
+}
+
+.msg-ownname {
+    color: blueviolet;
+}
+
+#send-msg {
+    height: 100%;
+    width: calc(100% - 125px);
+    margin: 0px;
+    padding-left: 10px;
+}
+
+#send-button {
+    height: 100%;
+    width: 100px;
+    margin: 0px;
+}

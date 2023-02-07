@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Belépés</title>
+    </head>
+    <body>
+        <p>
+            <input type="text" id="name" />
+            <button onclick="login()">Chat!</button>
+        </p>
+        <p id="message"></p>
+    </body>
+    <script>
+        function login() {
+            let name   = document.getElementById('name').value
+            let msgTag = document.getElementById('message')
+
+            if (name == '') {
+                msgTag.innerText = 'HIBA: A megadott név üres!'
+            }
+            else {
+                msgTag.innerHTML = `A megadott név: ${name}.<br>Belépés...`
+                setTimeout(() => {
+                    console.log(document.location.href)
+                    document.location.href = `/chat/${name}`
+                }, 500)
+            }
+        }
+    </script>
+</html>
